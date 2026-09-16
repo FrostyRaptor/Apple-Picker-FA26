@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Apple : MonoBehaviour
@@ -12,6 +13,9 @@ public class Apple : MonoBehaviour
     if (transform.position.y < bottomY)
     {
       Destroy(this.gameObject);
+
+      ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+      apScript.AppleMissed();
     }
   }
 }

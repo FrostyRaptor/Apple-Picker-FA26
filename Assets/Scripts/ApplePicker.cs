@@ -22,9 +22,12 @@ public class ApplePicker : MonoBehaviour
     }
   }
 
-  // Update is called once per frame
-  void Update()
+  public void AppleMissed()
   {
-
+    GameObject[] appleArr = GameObject.FindGameObjectsWithTag("Apple");
+    foreach (GameObject tempG0 in appleArr)
+    {
+      Destroy(tempG0);
+    }
   }
 }
