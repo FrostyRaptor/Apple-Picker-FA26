@@ -7,6 +7,7 @@ public class PlayAgain : MonoBehaviour
 {
   public void RestartGame()
   {
+    RoundCounter.ResetRoundCount();
     SceneManager.LoadScene("_Scene_0");
   }
 }
