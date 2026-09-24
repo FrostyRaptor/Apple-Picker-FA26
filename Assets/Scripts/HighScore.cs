@@ -44,7 +44,7 @@ public class HighScore : MonoBehaviour
   [Tooltip("Check this box to reset the HighScore in PlayerPrefs")]
   public bool resetHighScoreNow = false;
 
-  void FixedUpdate()
+  void OnDrawGizmos()
   {
     if (resetHighScoreNow)
     {
