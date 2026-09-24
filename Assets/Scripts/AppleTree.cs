@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 
 public class AppleTree : MonoBehaviour
@@ -9,6 +8,9 @@ public class AppleTree : MonoBehaviour
 
   // Prefab for instantiating apples
   public GameObject applePrefab;
+
+  // Prefab for instantiating branches
+  public GameObject branchPrefab;
 
   // Speed at which the AppleTree moves
   public float speed = 1f;
@@ -19,6 +21,9 @@ public class AppleTree : MonoBehaviour
   // Chance that the AppleTree will change directions
   public float changeDirChance = 0.1f;
 
+  // Chance that the AppleTree will spawn a branch
+  public float spawnBranchChance = 0.1f;
+
   // Seconds between Apples instantiations
   public float appleDropDelay = 1f;
 
@@ -26,14 +31,33 @@ public class AppleTree : MonoBehaviour
   void Start()
   {
     // Start dropping apples
-    Invoke("DropApple", 2f);
+    Invoke("DropAppleOrBranch", 2f);
   }
 
   void DropApple()
   {
     GameObject apple = Instantiate<GameObject>(applePrefab);
     apple.transform.position = transform.position;
-    Invoke("DropApple", appleDropDelay);
+    Invoke("DropAppleOrBranch", appleDropDelay);
+  }
+
+  void DropBranch()
+  {
+    GameObject branch = Instantiate<GameObject>(branchPrefab);
+    branch.transform.position = transform.position;
+    Invoke("DropAppleOrBranch", appleDropDelay);
+  }
+
+  void DropAppleOrBranch()
+  {
+    if (Random.value < spawnBranchChance)
+    {
+      DropBranch();
+    }
+    else
+    {
+      DropApple();
+    }
   }
 
   // Update is called once per frame

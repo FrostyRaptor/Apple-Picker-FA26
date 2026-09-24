@@ -475,9 +475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basketPrefab: {fileID: 1781495335172057174, guid: 20ca0061e0ca6f946b1abfb7a3ac7693, type: 3}
-  numBaskets: 3
+  numBaskets: 4
   basketBottomY: -14
-  basketSpacingY: 2
+  basketSpacingY: 1.2
   basketList: []
 --- !u!1 &1437841633
 GameObject:

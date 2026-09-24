@@ -9,7 +9,7 @@ public class ApplePicker : MonoBehaviour
   public GameObject basketPrefab;
   public int numBaskets = 4;
   public float basketBottomY = -14f;
-  public float basketSpacingY = 1f;
+  public float basketSpacingY = 1.2f;
   public List<GameObject> basketList;
 
   // Start is called before the first frame update
@@ -18,26 +18,32 @@ public class ApplePicker : MonoBehaviour
     basketList = new List<GameObject>();
     for (int i = 0; i < numBaskets; i++)
     {
-      GameObject tBasketG0 = Instantiate<GameObject>(basketPrefab);
+      GameObject tBasketGO = Instantiate<GameObject>(basketPrefab);
       Vector3 pos = Vector3.zero;
       pos.y = basketBottomY + (basketSpacingY * i);
-      tBasketG0.transform.position = pos;
-      basketList.Add(tBasketG0);
+      tBasketGO.transform.position = pos;
+      basketList.Add(tBasketGO);
     }
   }
 
   public void AppleMissed()
   {
     GameObject[] appleArr = GameObject.FindGameObjectsWithTag("Apple");
-    foreach (GameObject tempG0 in appleArr)
+    foreach (GameObject tempGO in appleArr)
     {
-      Destroy(tempG0);
+      Destroy(tempGO);
+    }
+
+    GameObject[] branchArr = GameObject.FindGameObjectsWithTag("Branch");
+    foreach (GameObject tempGO in branchArr)
+    {
+      Destroy(tempGO);
     }
 
     int basketIndex = basketList.Count - 1;
-    GameObject basketG0 = basketList[basketIndex];
+    GameObject basketGO = basketList[basketIndex];
     basketList.RemoveAt(basketIndex);
-    Destroy(basketG0);
+    Destroy(basketGO);
 
     if (basketList.Count == 0)
     {
